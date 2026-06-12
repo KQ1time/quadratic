@@ -1,18 +1,67 @@
-# verison 0.0.1
+# verison 0.0.2
 # Программа для решения квадратных уравнений
 
-def solve(a, b, c):
-    d = b ** 2 - (4 * a * c)
-    if d < 0:
-        return None
-    elif d == 0:
-        return -b / (2 * a)
-    else:
-        return ((-b + d ** 0.5) / (2 * a), (-b - d ** 0.5) / (2 * a))
+def solution(a: float, b: float, c: float):
+    """
+    Решает квадратное уравнение через дискриминант.
     
-a = int(input())
-b = int(input())
-c = int(input())
+    Args:
+        a [float]: старший коэффициент квадратного трёхчлена.
+        b [float]: коэффициент перед x в квадратном трёхчлене.
+        c [float]: свободный коэффициент.
 
-result = solve(a, b, c)
-print(result)
+    Return:
+        [None]: отсутствие корней.
+        [tuple]: два корня.
+        [float]: один корень.
+    """
+
+    discriminant = b ** 2 - (4 * a * c)
+    if discriminant > 0:
+        x_1 = (-b + discriminant ** 0.5) / (2 * a)
+        x_2 = (-b - discriminant ** 0.5) / (2 * a)
+        return (x_1, x_2)
+    elif discriminant == 0:
+        x = -b / (2 * a)
+        return x
+    else:
+        return None
+    
+
+def output(a: float, b: float, c: float) -> str:
+    """
+    Улучшает отображение корней.
+    
+    Args:
+        a [float]: старший коэффициент квадратного трёхчлена.
+        b [float]: коэффициент перед x в квадратном трёхчлене.
+        c [float]: свободный коэффициент.
+
+    Return:
+        str: описание результата 
+    """
+
+    result = solution(a, b, c)
+    if result == None:
+        print("Нет корней")
+    elif type(result) == tuple:
+        print(f"Два корня: {result[0]} и {result[1]}")
+    else:
+        print(f"Один корень: {result}")
+
+
+def main() -> None:
+    """
+    Главная функция программы.
+    """
+
+    print("Введите коэффициенты в формате \na b c")
+    coefficients = input().split()
+    a, b, c =  float(coefficients[0]), float(coefficients[1]), float(coefficients[2])
+    if a != 0:
+        output(a, b, c)
+    else:
+        print("a не может быть равным 0")
+
+
+main()
