@@ -1,4 +1,4 @@
-# verison 0.0.2
+# verison 1.0.1
 # Программа для решения квадратных уравнений
 
 def solution(a: float, b: float, c: float):
