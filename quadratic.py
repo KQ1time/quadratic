@@ -42,12 +42,12 @@ def output(a: float, b: float, c: float) -> str:
     """
 
     result = solution(a, b, c)
-    if result == None:
-        print("Нет корней")
-    elif type(result) == tuple:
-        print(f"Два корня: {result[0]} и {result[1]}")
+    if result is None:
+        return "Нет корней"
+    elif isinstance(result, tuple):
+        return f"Два корня: {result[0]} и {result[1]}"
     else:
-        print(f"Один корень: {result}")
+        return f"Один корень: {result}"
 
 
 def main() -> None:
@@ -59,7 +59,7 @@ def main() -> None:
     coefficients = input().split()
     a, b, c =  float(coefficients[0]), float(coefficients[1]), float(coefficients[2])
     if a != 0:
-        output(a, b, c)
+        print(output(a, b, c))
     else:
         print("a не может быть равным 0")
 
